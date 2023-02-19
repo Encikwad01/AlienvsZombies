@@ -1,12 +1,12 @@
-// ********************************************************* 
-// Course: TCP1101 PROGRAMMING FUNDAMENTALS 
-// Year: Trimester 1, 2022/23 (T2215) 
-// Lab: TT1L 
+// *********************************************************
+// Course: TCP1101 PROGRAMMING FUNDAMENTALS
+// Year: Trimester 1, 2022/23 (T2215)
+// Lab: TT1L
 // Names: MUHAMAD SYAMIL IMRAN BIN MOHD MANSOR | MUHAMMAD AMMAR AJWAD |
 // IDs: 1221303708 | 1211303991 |
 // Emails: syamil.imran.m@gmail.com | 1211303991@student.mmu.edu.my |
 // Phones: +601110179892 | +60182606324 |
-// ********************************************************* 
+// *********************************************************
 
 #include <iostream>
 #include <string>
@@ -16,14 +16,13 @@
 #include <iomanip>
 using namespace std;
 
-class GameBoard 
+class GameBoard
 {
 private:
-    vector< vector<char> > map_;  
-    int dimX_, dimY_;             
+    vector<vector<char>> map_;
+    int dimX_, dimY_;
 
 public:
-
     GameBoard(int dimX = 9, int dimY = 5);
     int noOfZombies = 2;
     void init(int dimX, int dimY);
@@ -36,7 +35,6 @@ public:
     int getDimY() const;
     bool isEmpty(int x, int y);
     bool isInsideMap(int x, int y);
-
 };
 
 GameBoard::GameBoard(int dimX, int dimY)
@@ -54,7 +52,8 @@ void GameBoard::SettingsDisplay(int dimX, int dimY)
     cout << "-----------------------" << endl;
     cout << "Board Rows     : " << dimY << endl;
     cout << "Board Columns  : " << dimX << endl;
-    cout << "Zombie Count   : " << noOfZombies << endl << endl;
+    cout << "Zombie Count   : " << noOfZombies << endl
+         << endl;
 
     cout << "Do you wish to change the game settings? (y/n)? => ";
     cin >> decision;
@@ -63,41 +62,42 @@ void GameBoard::SettingsDisplay(int dimX, int dimY)
 
     switch (decision)
     {
-        case 'y':
+    case 'y':
         cout << "Board settings" << endl;
         cout << "----------------" << endl;
         cout << "Enter rows => ";
         cin >> dimY_;
-            while (dimY_ % 2 == 0)
-            {
-                cout << "Value must be an odd number, please re-enter => ";
-                cin >> dimY_;
-            } 
+        while (dimY_ % 2 == 0)
+        {
+            cout << "Value must be an odd number, please re-enter => ";
+            cin >> dimY_;
+        }
         cout << "Enter columns => ";
         cin >> dimX_;
-            while (dimX_ % 2 == 0)
-            {
-                cout << "Value must be an odd number, please re-enter => ";
-                cin >> dimX_;
-            }
-        cout << endl << "Zombie settings" << endl;
+        while (dimX_ % 2 == 0)
+        {
+            cout << "Value must be an odd number, please re-enter => ";
+            cin >> dimX_;
+        }
+        cout << endl
+             << "Zombie settings" << endl;
         cout << "----------------" << endl;
         cout << "Enter number of Zombies => ";
         cin >> noOfZombies;
-            while (noOfZombies > 9)
-            {
-                cout << "Value must be an below 9, please re-enter => ";
-                cin >> noOfZombies;
-            } 
-        cout << endl << "Settings Updated." << endl;
+        while (noOfZombies > 9)
+        {
+            cout << "Value must be an below 9, please re-enter => ";
+            cin >> noOfZombies;
+        }
+        cout << endl
+             << "Settings Updated." << endl;
         system("pause");
         system("cls");
         break;
-        case 'n':
+    case 'n':
         break;
     }
 }
-
 
 void GameBoard::init(int dimX, int dimY)
 {
@@ -105,11 +105,10 @@ void GameBoard::init(int dimX, int dimY)
     char objects[] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'h', 'v', '^', '>', '<', 'p', 'r'};
     int noOfObjects = 14;
 
-    
-    map_.resize(dimY_); 
+    map_.resize(dimY_);
     for (int i = 0; i < dimY_; ++i)
     {
-        map_[i]. resize(dimX_);
+        map_[i].resize(dimX_);
     }
 
     for (int i = 0; i < dimY_; ++i)
@@ -128,7 +127,7 @@ void GameBoard::display() const
     // system("cls"); // OR system("clear"); for Linux / MacOS
     if (dimX_ > 10)
     {
-        for (int i = 1; i < dimX_-10; i++)
+        for (int i = 1; i < dimX_ - 10; i++)
         {
             cout << " ";
         }
@@ -148,7 +147,7 @@ void GameBoard::display() const
         cout << "+" << endl;
 
         // display row number
-        cout << setw(2) << (i+1);
+        cout << setw(2) << (i + 1);
 
         // display cell content and border of each column
         for (int j = 0; j < dimX_; ++j)
@@ -183,7 +182,8 @@ void GameBoard::display() const
     {
         cout << " " << (j + 1) % 10;
     }
-    cout << endl << endl;
+    cout << endl
+         << endl;
 }
 
 int GameBoard::getDimX() const
@@ -196,19 +196,19 @@ int GameBoard::getDimY() const
     return dimY_;
 }
 
-bool GameBoard::isEmpty(int x,int y)
+bool GameBoard::isEmpty(int x, int y)
 {
-    return map_[y-1][x-1] == ' ';
+    return map_[y - 1][x - 1] == ' ';
 }
 
-bool GameBoard::isInsideMap(int x,int y)
+bool GameBoard::isInsideMap(int x, int y)
 {
     return (0 < x && x <= dimX_) && (0 < y && y <= dimY_);
-} 
+}
 
 void GameBoard::setObject(int x, int y, char ch)
 {
-    map_[y-1][x-1] = ch;
+    map_[y - 1][x - 1] = ch;
 }
 
 int GameBoard::getNoOfZombies()
@@ -218,16 +218,16 @@ int GameBoard::getNoOfZombies()
 
 class Characters
 {
-    private:
+private:
     int number;
     int x_, y_;
-    char icon; 
+    char icon;
     int life_;
     int att_;
     int range_;
     string Command_ = "up";
 
-    public:
+public:
     Characters(char icon);
     void attributes(int life, int att, int range);
     void spawnInMiddle(GameBoard &gameboard);
@@ -272,7 +272,7 @@ void Characters::spawnRandom(GameBoard &gameboard)
     }
 
     gameboard.setObject(x_, y_, icon);
-} 
+}
 
 void game()
 {
@@ -280,42 +280,46 @@ void game()
     Characters alien('A');
     alien.attributes(100, 0, 1);
     vector<Characters> zombies;
+    cout << "Game" << endl;
 
     alien.spawnInMiddle(gameboard);
-    
+
     for (int i = 0; i < gameboard.noOfZombies; i++)
     {
         char ch = i + 1 + '0';
         zombies.push_back(Characters(ch));
         zombies[i].spawnRandom(gameboard);
-        zombies[i].attributes((10 + rand() % 30) * 10 , (1 + rand() % 6) * 5 , 1 + rand() % 5);
+        zombies[i].attributes((10 + rand() % 30) * 10, (1 + rand() % 6) * 5, 1 + rand() % 5);
     }
 
+    gameboard.display();
+    alien.displayAlien();
+    for (int i = 0; i < gameboard.noOfZombies; i++)
+        zombies[i].displayZombies(i, gameboard.noOfZombies);
+
+    alien.getCommand();
+    int k;
+    cin >> k;
+    do
+    {
+        alien.Command(gameboard);
         gameboard.display();
         alien.displayAlien();
         for (int i = 0; i < gameboard.noOfZombies; i++)
-        zombies[i].displayZombies(i, gameboard.noOfZombies);
-
-        alien.getCommand();
-        int k;
-        cin >> k;
-        do {
-            alien.Command(gameboard);
-            gameboard.display();
-            alien.displayAlien();
-            for (int i = 0; i < gameboard.noOfZombies; i++)
             zombies[i].displayZombies(i, gameboard.noOfZombies);
-        } while(alien.getCommand() == "up");
+    } while (alien.getCommand() == "up");
+
+    cout << "\ncommand=>" << endl;
 }
 
 void Characters::displayAlien()
 {
-    cout << "Alien       : Life " << setw(3) << life_ << ", Attack :  " << setw(2) << att_ << endl; 
+    cout << "Alien       : Life " << setw(3) << life_ << ", Attack :  " << setw(2) << att_ << endl;
 }
 
 void Characters::displayZombies(int i, int num)
 {
-    cout << "Zombie " << i+1 << "    : Life " << setw(3) << life_ << ", Attack :  " << setw(2) << att_ << ", Range : " << range_ << endl; 
+    cout << "Zombie " << i + 1 << "    : Life " << setw(3) << life_ << ", Attack :  " << setw(2) << att_ << ", Range : " << range_ << endl;
 }
 
 string Characters::getCommand()
@@ -330,31 +334,97 @@ void Characters::Command(GameBoard &gameboard)
     if (Command_ == "up")
     {
         gameboard.setObject(x_, y_, '.');
-        gameboard.setObject(x_, y_-1, icon);
-        y_ = y_-1;
+        gameboard.setObject(x_, y_ - 1, icon);
+        y_ = y_ - 1;
     }
     else if (Command_ == "down")
     {
         gameboard.setObject(x_, y_, '.');
-        gameboard.setObject(x_, y_+1, icon);
-        y_ = y_+1;
+        gameboard.setObject(x_, y_ + 1, icon);
+        y_ = y_ + 1;
     }
     else if (Command_ == "left")
     {
         gameboard.setObject(x_, y_, '.');
-        gameboard.setObject(x_-1, y_, icon);
-        x_ = x_-1;
+        gameboard.setObject(x_ - 1, y_, icon);
+        x_ = x_ - 1;
     }
     else if (Command_ == "right")
     {
         gameboard.setObject(x_, y_, '.');
-        gameboard.setObject(x_+1, y_, icon);
-        x_ = x_+1;
+        gameboard.setObject(x_ + 1, y_, icon);
+        x_ = x_ + 1;
     }
 }
 
+void command_help();
+void displayMenu();
+void menu(int choice);
+
+
+
 int main()
 {
-    game();
+    displayMenu();
     system("pause");
 }
+
+void command_help()
+{
+    cout << "Commands\n";
+    cout << "1. up - Move Up.\n";
+    cout << "2. down - Move down.\n";
+    cout << "3. left - Move left.\n";
+    cout << "4. right - Move right.\n";
+    cout << "5. arrow - Change the direction of an arrow.\n";
+    cout << "6. help - Display these user commands.\n";
+    cout << "7. save - Save the game.\n";
+    cout << "8. load - Load a game\n";
+    cout << "9. quit - Quit the game.\n";
+}
+
+
+
+void displayMenu()
+{
+    int choice;
+
+    // Display menu options
+    cout << endl;
+    cout << "+---------------------------------------------+" << endl;
+    cout << "|               ALIEN VS ZOMBIE               |" << endl;
+    cout << "|=============================================|" << endl;
+    cout << "| Select:                                     |" << endl;
+    cout << "|    1 => New Game                            |" << endl;
+    cout << "|---------------------------------------------|" << endl;
+    cout << "|    Q => Quit                                |" << endl;
+    cout << "+---------------------------------------------+" << endl;
+    cout << endl;
+    cout << "Choice => ";
+    cin >> choice;
+
+    menu(choice);
+}
+
+void menu(int choice)
+{
+    if (choice == 1)
+    {
+        game();
+    }
+    else if (choice == 2)
+    {
+        cout << "Loading game..." << endl;
+    }
+    else if (choice == 'Q' || choice == 'q')
+    {
+        cout << "Quitting game..." << endl;
+        exit(0);
+    }
+    else
+    {
+        cout << "Invalid choice. Please try again." << endl;
+        displayMenu();
+    }
+}
+
