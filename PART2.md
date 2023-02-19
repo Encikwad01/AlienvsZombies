@@ -27,25 +27,13 @@ Describe the additional features that has been implemented.
 
 ## Contributions
 
-List down the contribution of each group members.
+### Muhamad Syamil Imran bin Mohd Mansor
 
-For example:
+1. Game board settings.
+2. Randomly generate game board with game objects.
+3. Alien and Zombies attribute initialization
+4. Alien and Zombies spawning.
 
-### Tony Stark
-
-1. Randomly generate game board.
-2. *add more*
-
-### Steve Rogers
-
-1. Zombie movement and attack behaviour.
-2. *add more*
-
-### Dr. Strange
-
-1. Implement all game objects.
-2. *add more*
-
-## Problems Encountered & Solutions
-
-Describe the problems encountered and provide the solutions / plan for the solutions.
+### Muhammad Ammar Ajwad
+1. User command input
+2. Menu interface
